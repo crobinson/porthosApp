@@ -1,0 +1,22 @@
+<ion-view view-title="Checkout">
+    <ion-nav-title>
+        <img style="height:100%;" src="img/logo_header.png">
+    </ion-nav-title>
+    <ion-nav-buttons side="right">
+        <button class="button button-clear button-light" ng-click="pedir()">Pedir</button>
+    </ion-nav-buttons>
+    <ion-content>
+        <h3>DATOS PERSONALES</h3>
+        <form ng-submit="agregar()">
+            <input type="text" style="width:100%; border-bottom:1px solid;" placeholder="Nombre" ng-model="formData.nombre">
+            <input type="text" style="width:100%; border-bottom:1px solid;" placeholder="Telefono" ng-model="formData.telefono">
+            <input type="text" style="width:100%; border-bottom:1px solid;" placeholder="Email" ng-model="formData.email">
+            <input type="text" style="width:100%; border-bottom:1px solid;" placeholder="Dirección" ng-model="formData.direccion">
+                <div class="list">
+                    <label class="item">
+                        <button class="button button-block button-balanced" type="submit">Agregar Direccion</button>
+                    </label>
+                </div>
+        </form>
+    </ion-content>
+</ion-view>

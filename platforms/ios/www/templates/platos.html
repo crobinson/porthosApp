@@ -1,0 +1,34 @@
+<ion-view view-title="Platos">
+    <ion-nav-title>
+        <img style="height:100%;" src="img/logo_header.png">
+    </ion-nav-title>
+    <ion-nav-buttons side="right">
+        <a href="#/app/carrito" class="button button-clear button-light">Ver Carrito</a>
+    </ion-nav-buttons>
+    <div style="background-color:black; text-align:center; color:white;" ng-if="hijoslenght > 0" class="bar bar-subheader">
+        <a ng-repeat="hijo in hijos" ng-click="showPlatos({{hijo.IDCATEGORIA}})">
+            {{hijo.NOMBRE}} |
+        </a>
+       <!-- <p>Todas nuestras Burgers, Phillys y HotDogs vienen acompañados de cascos de papa de la casa</p> -->
+    </div>
+    <div ng-if="hijoslenght == 0" style="background-color:black; text-align:center; color:white;" class="bar bar-subheader">
+        <h1 class="title">{{categoria.NOMBRE}}</h1>
+        <!-- <p>Todas nuestras Burgers, Phillys y HotDogs vienen acompañados de cascos de papa de la casa</p> -->
+    </div>
+    <ion-content class="has-subheader has-header has-footer" has-subheader="true" has-tabs="true">
+        <ion-list>
+            <ion-item class="item-body" style="padding:5px;background-color:transparent; margin:10px; color:black; font-size:20px;" ng-repeat="plato in platos" href="#/app/paso2/{{plato.IDPLATO}}">
+                {{plato.NOMBRE}} {{plato.TAMANO}}
+                <span style="color:black; font-size:26px;" class="item-note">
+                    {{plato.PRECIO}}
+                </span>
+                <p style="color:black">{{plato.INGREDIENTES}}</p>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+    <div class="bar bar-footer bar-balanced" style="padding:0 !important;">
+        <button ng-click="confirmarpedido()" class="button button-full button-balanced" style="bottom:0 !important; margin:0 !important;">
+            Confirma tu pedido
+        </button>
+    </div>
+</ion-view>

@@ -1,0 +1,22 @@
+<ion-view>
+    <ion-nav-title>
+        <img style="height:100%;" src="img/logo_header.png">
+    </ion-nav-title>
+    <ion-content>
+        <ion-slide-box on-slide-changed="slideHasChanged($index)">
+            <ion-slide ng-repeat="banner in banners">
+                <div class="box blue"><img style="width:100%;" ng-src="{{banner.FOTO}}" /></div>
+            </ion-slide>
+        </ion-slide-box>
+        
+        <a class="button button-block button-outline button-dark" href="#/app/categorias">
+            REALIZA TU PEDIDO
+        </a>
+        <button class="button button-block button-outline button-dark">
+            SUCURSALES
+        </button>
+        <button class="button button-block button-outline button-dark">
+            REALIZA TU EVENTO
+        </button>
+    </ion-content>
+</ion-view>

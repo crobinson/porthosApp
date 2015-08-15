@@ -1,0 +1,18 @@
+<ion-view>
+    <ion-nav-title>
+        <img style="height:100%;" src="img/logo_header.png">
+    </ion-nav-title>
+    <ion-nav-buttons side="right">
+        <a href="#/app/carrito" class="button button-clear button-light">Ver Carrito</a>
+    </ion-nav-buttons>
+    <ion-content>
+        
+        <ion-list style="background-color:transparent;">
+            <ion-item back-img="{{categoria.FOTO}}" style="background-color:transparent; box-shadow: rgba(0,0,0,0.20) 0 10px 10px; background-position: center bottom;background-image:url('{{categoria.FOTO}}'); background-size:cover" ng-repeat="categoria in categorias" href="#" ng-click="goto({{categoria.IDCATEGORIA}})">
+                <span ng-if="categoria.FOTO"><p style="height:130px;">&nbsp;</p></span>
+                <span ng-if="!categoria.FOTO">{{categoria.NOMBRE}}</span>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>
+<!--/app/platos/{{categoria.IDCATEGORIA}}-->
