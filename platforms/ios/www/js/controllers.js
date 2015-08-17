@@ -200,7 +200,7 @@ angular.module('starter.controllers', [])
         };
 
         $scope.confirmarpedido = function() {
-            $state.go("app.carrito");
+            $state.go('app.carrito');
         }
 
     })
@@ -210,40 +210,13 @@ angular.module('starter.controllers', [])
             plato = apiService.getPlatoById($stateParams.platoId),
             adiciones = JSON.parse(localStorage.getItem('adiciones'));
         $scope.data = {};
-        $scope.carnes = "";
+        $scope.carnes = '';
         $scope.adiciones = adiciones.rows;
         $scope.precio = plato.rows[0].PRECIO;
         console.log(plato);
         if (plato.rows[0].NUMERODECARNES == 'S') {
-            /*var myPopup = $ionicPopup.show({
-                                           template: '<input type="tel" ng-model="data.wifi">',
-                                           title: 'DESEAS ADICIONARLE CARNES A TU HAMBURGUESA?',
-                                           subTitle: '(Cada carne adicional tiene un valor de $6.000)',
-                                           scope: $scope,
-                                           buttons: [
-                                                     { text: 'No, gracias' },
-                                                     {
-                                                        text: 'Si',
-                                                        type: 'button-balanced',
-                                                        onTap: function(e) {
-                                                            console.log("entro")
-                                                            if (!$scope.data.wifi) {
-                                                                //don't allow the user to close unless he enters wifi password
-                                                                console.log('Tapped! no', res);
-                                                            } else {
-                                                                console.log('Tapped! si', res);
-                                                                return $scope.data.wifi;
-                                                            }
-                                                        }
-                                                     }
-                                                     ]
-                                           });
-            myPopup.then(function(res) {
-                         console.log('Tapped!', res);
-                         carnes = res;
-                         });*/
             var myPopup = $ionicPopup.show({
-                template: '<input type="password" ng-model="data.wifi">',
+                template: '<input type="tel" ng-model="data.wifi">',
                 title: 'DESEAS ADICIONARLE CARNES A TU HAMBURGUESA?',
                 subTitle: '(Cada carne adicional tiene un valor de $6.000)',
                 scope: $scope,
@@ -281,8 +254,6 @@ angular.module('starter.controllers', [])
                 'observaciones': $scope.formData.observaciones,
                 'plato': plato.rows[0]
             });
-            console.log("result: ");
-            console.log(result);
             localStorage.setItem('cart', JSON.stringify(result));
             //$ionicNavBarDelegate.back();
             $ionicHistory.goBack();
@@ -299,22 +270,99 @@ angular.module('starter.controllers', [])
         }
 
     })
-    .controller('carritoCtrl', function($scope, $stateParams, apiService, $state) {
-        $scope.items = JSON.parse(localStorage.getItem('cart'));
-                console.log($scope.items);
-        $scope.pagar = function() {
-            $state.go("app.checkout");
-        }
-    })
 
-.controller('checkoutCtrl', function($scope, $stateParams, apiService, $state) {
+.controller('carritoCtrl', function($scope, $stateParams, apiService, $state) {
+    $scope.items = JSON.parse(localStorage.getItem('cart'));
+    $scope.subtotal = 0;
+    for (var i = 0, len = $scope.items.length; i < len; i++) {
+        console.log($scope.items[i]);
+        var price = $scope.items[i].plato.PRECIO.replace(/[^0-9\.]+/g, '');
+        $scope.subtotal = $scope.subtotal + parseInt(price.replace('.', ''));
+    }
+
+    $scope.pagar = function() {
+        $state.go('app.checkout');
+    }
+    $scope.borrarItem = function() {
+        localStorage.setItem('cart', JSON.stringify($scope.items));
+    }
+
+})
+
+.controller('checkoutCtrl', function($scope, $stateParams, apiService, $state, $ionicPopup, $ionicPopover) {
     $scope.formData = {};
+    $scope.data = {};
+    $scope.direcciones = JSON.parse(localStorage.getItem('direcciones'));
+    if ($scope.direcciones === null)
+            $scope.direcciones = [];
     $scope.pedir = function() {
         var results = apiService.pedir($scope.formData.nombre, $scope.formData.telefono, $scope.formData.email, $scope.formData.direccion);
         console.log(results);
         localStorage.setItem('cart', null);
-        alert("Pedido enviado con éxito");
+        alert('Pedido enviado con éxito');
     }
+            
+            var template = '<ion-popover-view style="border:none; background-color:black; color:white;"><ion-item style="border-color:white; background-color:black; color:white;" ng-click="set_pago(1)" class="item item-icon-left"><i class="icon ion-cash"></i> Efectivo</ion-item><ion-item style="border-color:white; background-color:black; color:white;" ng-click="set_pago(2)" class="item item-icon-left"><i class="icon ion-card"></i> Tarjeta Débito</ion-item><ion-item style="border-color:white; background-color:black; color:white;" ng-click="set_pago(3)" class="item item-icon-left"><i class="icon ion-card"></i> Tarjeta Crédito</ion-item><ion-item style="border-color:white; background-color:black; color:white;" ng-click="set_pago(4)" class="item item-icon-left"><i class="icon ion-iphone"></i> Pago Online</ion-item></ion-popover-view>';
+            
+    $scope.popover = $ionicPopover.fromTemplate(template, {
+                                                        scope: $scope
+                                                        });
+    $scope.showPopover = function() {
+           $scope.popover.show($event);
+            }
+            
+    $scope.set_pago = function(id){
+            switch(id) {
+            case 1:
+                $scope.formData.formapago = 'Efectivo';
+            break;
+            case 2:
+                $scope.formData.formapago = 'Tarjeta Débito';
+            break;
+            case 3:
+                $scope.formData.formapago = 'Tarjeta Crédito';
+            break;
+            case 4:
+            $scope.formData.formapago = 'Online';
+            break;
+            default:
+                $scope.formData.formapago = 'Efectivo';
+            }
+            $scope.popover.hide();
+    }
+            
+    $scope.showPopup = function() {
+            var myPopup = $ionicPopup.show({
+                                           template: '<input type="text" ng-model="data.wifi">',
+                                           title: 'AGREGA UNA NUEVA DIRECCION',
+                                           subTitle: '(Recuerda seleccionar la dirección del envío después de agregarla)',
+                                           scope: $scope,
+                                           buttons: [{
+                                                     text: 'Cancelar'
+                                                     }, {
+                                                     text: 'Agregar',
+                                                     type: 'button-balanced',
+                                                     onTap: function(e) {
+                                                     if (!$scope.data.wifi) {
+                                                     //don't allow the user to close unless he enters wifi password
+                                                     e.preventDefault();
+                                                     } else {
+                                                     return $scope.data.wifi;
+                                                     }
+                                                     }
+                                                     }]
+                                           });
+            myPopup.then(function(res) {
+                         console.log('Tapped!', res);
+                            if(res){
+                                $scope.direcciones.push(res);
+                                localStorage.setItem('direcciones', JSON.stringify($scope.direcciones));
+                            }
+                         
+                         });
+    }
+            
+            
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {})
