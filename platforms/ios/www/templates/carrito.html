@@ -3,19 +3,43 @@
         <img style="height:100%;" src="img/logo_header.png">
             </ion-nav-title>
     <ion-nav-buttons side="right">
-        <button class="button button-clear button-light" ng-click="pagar()">CONTINUAR</button>
+        <button class="button button-clear button-light" ng-click="pagar()">Pagar</button>
     </ion-nav-buttons>
 
     <ion-content class="has-header has-footer">
         <ion-list class="list card">
-            <ion-item style="color:white; margin:10px; background-color : rgba(0, 0, 0, 0.8); border-radius: 10px; border: 1px solid white;" class="item item-body" ng-repeat="item in items" href="#">
+            <ion-item style="color:white; margin:10px; background-color : rgba(0, 0, 0, 0.8); border-radius: 10px; border: 1px solid white;" class="item item-body" ng-repeat="item in items" ng-init="parentIndex = $index" href="#">
                 {{item.plato.NOMBRE}} {{item.plato.TAMANO}}
                 <span class="item-note">
                     {{item.plato.PRECIO}}
                 </span>
-                <p style="color:white;margin:0px;">{{item.plato.INGREDIENTES}}</p>
+
+
+                <p style="color:white">Adiciones:</p>
+                <div style="color:white; margin:0; padding:5px 30px 5px 0px; background-color:transparent; border:none;"  class="item item-button-right" ng-if="item.carnes">
+                    Carnes Adicionales: {{item.carnes}}
+                    <span ng-if="item.valorcarnes" class="item-note">
+                        Valor: {{item.valorcarnes}}
+                    </span>
+                    <button ng-click="borrarCarnes($parent.$index);" style="position:absolute; top: 0px; right:0px;" class="button button-clear">
+                        <i class="icon ion-ios-minus-outline"></i>
+                    </button>
+                </div>
+
+                <div style="color:white; margin:0; padding:5px 30px 5px 0px; background-color:transparent; border:none;"  class="item item-button-right" ng-repeat="adicion in item.adicionesText">
+                    {{adicion.NOMBRE}}
+                    <span ng-if="adicion.PRECIO" class="item-note">
+                        Valor: {{adicion.PRECIO}}
+                    </span>
+                    <button ng-click="item.adicionesText.splice($index, 1); borrarAdicion(adicion, $parent.$index);" style="position:absolute; top: 0px; right:0px;" class="button button-clear">
+                         <i class="icon ion-ios-minus-outline"></i>
+                    </button>
+                </div>
+                <!--<p style="color:white;margin:0px;" ng-if="item.adiciones!=''" ng-bind-html="item.adiciones"></p>-->
                 <p style="color:white;margin:0px;">
                 <span style="border-bottom:solid 1px; border-radius: 5px; padding:2px;">Observaciones:</span> {{item.observaciones}}
+                </p>
+                <p style="color:white; font-size:18px;">SUBTOTAL: {{item.subtotal | currency:"$":0}}
                     <span style="display:inline; float:right;">
                         <a ng-click="items.splice($index, 1); borrarItem();" style="color:white;" class="tab-item" href="#">
                             <i class="icon ion-close-circled"></i>

@@ -48,8 +48,23 @@
         <false/>
       </dict>
     </dict>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSExceptionDomains</key>
+        <dict>
+            <key>www.porthospub.com</key>
+            <dict>
+                <key>NSExceptionAllowsInsecureHTTPLoads</key>
+                <true/>
+                <key>NSExceptionMinimumTLSVersion</key>
+                <string>TLSv1.1</string>
+                <key>NSIncludesSubdomains</key>
+                <true/>
+            </dict>
+        </dict>
+    </dict>
     <key>CFBundleIdentifier</key>
-    <string>com.ionicframework.porthosapp516553</string>
+    <string>com.porthospub.porthosApp</string>
     <key>CFBundleInfoDictionaryVersion</key>
     <string>6.0</string>
     <key>CFBundleName</key>
@@ -171,5 +186,7 @@
         <string>{768, 1024}</string>
       </dict>
     </array>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string></string>
   </dict>
 </plist>

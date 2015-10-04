@@ -3,14 +3,29 @@
         <img style="height:100%;" src="img/logo_header.png">
     </ion-nav-title>
     <ion-nav-buttons side="right">
-        <a href="#/app/carrito" class="button button-clear button-light"><i class="icon ion-cart-outline"></i>Ver Carrito</a>
+        <a href="#/app/carrito" ng-if="badgenum != null" class="button button-clear button-light icon-left ion-ios-cart-outline"><span class="badge badge-assertive header-badge">{{badgenum}}</span></a>
     </ion-nav-buttons>
-    <div style="background-color:black; text-align:center; color:white;" ng-if="hijoslenght > 0" class="bar bar-subheader">
-        <a ng-repeat="hijo in hijos" ng-click="showPlatos({{hijo.IDCATEGORIA}})">
-            {{hijo.NOMBRE}} |
-        </a>
+    <!--<div style="background-color:black; text-align:center; color:white;" ng-if="hijoslenght > 0" class="bar bar-subheader">
+
+      <!--<button ng-repeat="hijo in hijos" ng-click="showPlatos({{hijo.IDCATEGORIA}}); setActive({{hijo.IDCATEGORIA}});" ng-class="{'button button-small button-balanced': isActive({{hijo.IDCATEGORIA}})}"  class="button button-small button-energized">
+            {{hijo.NOMBRE}}
+      </button>
        <!-- <p>Todas nuestras Burgers, Phillys y HotDogs vienen acompañados de cascos de papa de la casa</p> -->
-    </div>
+      <!--<button ng-repeat="hijo in hijos" ng-click="showPlatos({{hijo.IDCATEGORIA}}); setActive({{hijo.IDCATEGORIA}});" ng-class="{'button button-small button-balanced': isActive({{hijo.IDCATEGORIA}})}" class="button button-small button-energized">
+            {{hijo.NOMBRE}}
+      </button>-->
+    <!--</div>-->
+    <ion-tabs ng-if="hijoslenght > 0" class="tabs-striped tabs-top tabs-background-balanced tabs-color-light">
+
+      <ion-tab title="{{hijo.NOMBRE}}"  ng-repeat="hijo in hijos" ng-click="showPlatos({{hijo.IDCATEGORIA}}); selectTabWithIndex($index);">
+        {{hijo.NOMBRE}}
+      </ion-tab>
+  </ion-tabs>
+    <!--<ion-tabs ng-if="hijoslenght > 0" class="tabs-striped tabs-top tabs-background-balanced tabs-color-light">
+        <ion-tab ng-repeat="hijo in hijos" class="tab-item" ng-click="showPlatos({{hijo.IDCATEGORIA}}); selectTabWithIndex($index);" href="#">
+          {{hijo.NOMBRE}}
+        </ion-tab>
+    </ion-tabs>-->
     <div ng-if="hijoslenght == 0" style="background-color:black; text-align:center; color:white;" class="bar bar-subheader">
         <h1 class="title">{{categoria.NOMBRE}}</h1>
         <!-- <p>Todas nuestras Burgers, Phillys y HotDogs vienen acompañados de cascos de papa de la casa</p> -->

@@ -3,7 +3,7 @@
         <img style="height:100%;" src="img/logo_header.png">
     </ion-nav-title>
     <ion-nav-buttons side="right">
-        <a href="#/app/carrito" class="button button-clear button-light"><i class="icon ion-cart-outline"></i>Ver Carrito</a>
+        <a href="#/app/carrito" ng-if="badgenum != null" class="button button-clear button-light icon-left ion-ios-cart-outline"><span class="badge badge-assertive header-badge">{{badgenum}}</span></a>
     </ion-nav-buttons>
     <ion-content>
         

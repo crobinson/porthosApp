@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>B4DA7BDF-80FD-46F2-A463-3D99DF96FFFB</string>
 	<key>IDESourceControlProjectName</key>
-	<string>porthosApp</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>46DBCA7BB4D6AC377155BECCA4E90D6C27EFA5A3</key>
 		<string>https://github.com/crobinson/porthosApp</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>platforms/ios/porthosApp.xcodeproj</string>
+	<string>platforms/ios/porthosApp.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>46DBCA7BB4D6AC377155BECCA4E90D6C27EFA5A3</key>

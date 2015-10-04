@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:bower.json">
+   </FileRef>
+   <FileRef
+      location = "group:config.xml">
+   </FileRef>
+   <FileRef
+      location = "group:gulpfile.js">
+   </FileRef>
+   <FileRef
+      location = "group:hooks">
+   </FileRef>
+   <FileRef
+      location = "group:ionic.project">
+   </FileRef>
+   <FileRef
+      location = "group:package.json">
+   </FileRef>
+   <FileRef
+      location = "group:platforms">
+   </FileRef>
+   <FileRef
+      location = "group:plugins">
+   </FileRef>
+   <FileRef
+      location = "group:porthosApp.ipa">
+   </FileRef>
+   <FileRef
+      location = "group:resources">
+   </FileRef>
+   <FileRef
+      location = "group:scss">
+   </FileRef>
+   <FileRef
+      location = "group:www">
+   </FileRef>
+</Workspace>

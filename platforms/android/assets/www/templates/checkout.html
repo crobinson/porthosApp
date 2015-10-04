@@ -1,0 +1,29 @@
+<ion-view view-title="Checkout">
+    <ion-nav-title>
+        <img style="height:100%;" src="img/logo_header.png">
+    </ion-nav-title>
+    <ion-nav-buttons side="right">
+        <button class="button button-clear button-light" ng-click="pedir()">Pedir</button>
+    </ion-nav-buttons>
+    <ion-content>
+        <h3 style="margin: 20px;">DATOS PERSONALES</h3>
+        <form style="background-color:transparent;color:black; border: 1px solid black; border-radius: 10px; margin: 20px; padding:10px;" ng-submit="agregar()">
+            <input type="text" style="width:100%; border-bottom:1px solid; background-color:transparent;" placeholder="Nombre" ng-model="formData.nombre">
+            <input type="text" style="width:100%; border-bottom:1px solid; background-color:transparent;" placeholder="Telefono" ng-model="formData.telefono">
+            <input type="text" style="width:100%; border-bottom:1px solid; background-color:transparent;" placeholder="Email" ng-model="formData.email">
+            <span>Seleccionar dirección</span>
+            <ion-radio style="border:none; background-color: transparent; padding:0px; line-height:1;" ng-repeat="direccion in direcciones" ng-value="direccion" ng-model="formData.direccion">
+                {{ direccion }}
+            </ion-radio>
+
+            <br/>
+            <button class="button button-small button-balanced" ng-click="showPopup();" type="submit">Agregar Direccion</button>
+        </form>
+        <form style="background-color:transparent;color:black; border: 1px solid black; border-radius: 10px; margin: 20px; padding:10px;" ng->
+            <ion-item style="background-color:transparent;color:black; border: 0; margin: 0px; padding:0px;" class="item item-input item-select" ng-click="popover.show($event)">
+                <span class="input-label">Forma de pago</span>
+                <input id="grupo" style="background-color:transparent;color:black; border: 0; margin: 0px; padding:0px; text-align:center;"  type="text" readonly ng-model="formData.formapago">
+            </ion-item>
+        </form>
+    </ion-content>
+</ion-view>

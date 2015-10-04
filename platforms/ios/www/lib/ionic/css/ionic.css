@@ -4529,7 +4529,8 @@ ion-tabs.tabs-color-active-dark .tab-item {
     width: 250px;
     max-width: 100%;
     max-height: 90%;
-    border-radius: 0px;
+    border: 2px solid white;
+    border-radius:13px;
     background-color: rgba(255, 255, 255, 0.9);
     display: -webkit-box;
     display: -webkit-flex;
@@ -4550,7 +4551,9 @@ ion-tabs.tabs-color-active-dark .tab-item {
         background-color : rgba(0, 0, 0, 0.9);
   padding: 15px 10px;
   color:white;
-  border-bottom: 1px solid #eee;
+  /*border-bottom: 1px solid #eee;*/
+  border-top-left-radius: 13px;
+  border-top-right-radius: 13px;
   text-align: center; }
 
 .popup-title {
@@ -4589,7 +4592,10 @@ ion-tabs.tabs-color-active-dark .tab-item {
   -ms-flex-direction: row;
   flex-direction: row;
   padding: 10px;
-  min-height: 65px; }
+  min-height: 65px;
+  border-bottom-left-radius: 13px;
+  border-bottom-right-radius: 13px;
+}
   .popup-buttons .button {
     -webkit-box-flex: 1;
     -webkit-flex: 1;
@@ -6493,7 +6499,7 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
     border-top: 5px solid;
     border-right: 5px solid rgba(0, 0, 0, 0);
     border-left: 5px solid rgba(0, 0, 0, 0);
-    color: #999;
+    color: #000;
     content: "";
     pointer-events: none; }
   .item-select.item-light select {

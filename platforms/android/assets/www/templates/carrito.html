@@ -1,0 +1,31 @@
+<ion-view view-title="Platos">
+    <ion-nav-title>
+        <img style="height:100%;" src="img/logo_header.png">
+            </ion-nav-title>
+    <ion-nav-buttons side="right">
+        <button class="button button-clear button-light" ng-click="pagar()">CONTINUAR</button>
+    </ion-nav-buttons>
+
+    <ion-content class="has-header has-footer">
+        <ion-list class="list card">
+            <ion-item style="color:white; margin:10px; background-color : rgba(0, 0, 0, 0.8); border-radius: 10px; border: 1px solid white;" class="item item-body" ng-repeat="item in items" href="#">
+                {{item.plato.NOMBRE}} {{item.plato.TAMANO}}
+                <span class="item-note">
+                    {{item.plato.PRECIO}}
+                </span>
+                <p style="color:white;margin:0px;">{{item.adiciones}}</p>
+                <p style="color:white;margin:0px;">
+                <span style="border-bottom:solid 1px; border-radius: 5px; padding:2px;">Observaciones:</span> {{item.observaciones}}
+                    <span style="display:inline; float:right;">
+                        <a ng-click="items.splice($index, 1); borrarItem();" style="color:white;" class="tab-item" href="#">
+                            <i class="icon ion-close-circled"></i>
+                        </a>
+                    </span>
+                </p>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+    <div class="bar bar-footer bar-balanced" style="padding:0 !important;">
+        <div class="title">SUBTOTAL {{subtotal | currency:"COP$":0}}</div>
+    </div>
+</ion-view>
